@@ -1,0 +1,82 @@
+---
+title: "Simple Regression - Extra Credit"
+author: "Yaming Zhang"
+date: "5/9/2021"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1.When should we use regression instead of ANOVA?
+
+##When we want to predict the relationship between the dependent variable and independent variable, we would like to use the regression. If we want to make the comparision of means between multiple groups, we will use ANOVA.
+
+
+
+2.Please explain the relationship between SStotal, SSregression, and SSerror.
+
+##SST = SSR + SSE
+##(Observed Y – Ymean) = (Predicted Y –Ymean) + (Observed Y – Predicted Y)
+##Variation in Y = Explained by X + Unexplained by X
+##SSTotal = SSRegression + SSError
+
+
+3.Please use the following data to build a regression model and write a summary. IV is sugar and DV is calories.
+
+Sugar: 5, 8, 9, 10, 15, 18, 14, 17, 20, 22, 24, 26, 30 ,30, 32
+
+Calories: 20, 30, 60, 70, 100, 95, 70, 83, 103, 112, 130, 80, 95, 130, 112
+
+
+```{r}
+sugar <- c(5, 8, 9, 10, 15, 18, 14, 17, 20, 22, 24, 26, 30 ,30, 32)
+calories <- c(20, 30, 60, 70, 100, 95, 70, 83, 103, 112, 130, 80, 95, 130, 112)
+data <- data.frame(sugar, calories)
+```
+#1. type of variables
+
+```{r}
+str(data)
+```
+#2. non-zero variance
+
+```{r}
+var(data$sugar)
+```
+#3. heterscedasiticity
+
+```{r}
+library(car)
+scatterplot(data$sugar,data$calories)
+```
+##4. Normality of error
+
+```{r}
+model <- lm(calories ~ sugar, data= data)
+standarized = rstudent(model)
+qqnorm(standarized)
+abline(0,1)
+shapiro.test(standarized)
+```
+P-value is 0.1213 > 0.05, so it is normal distributed
+
+##5. Linearity
+
+```{r}
+scatterplot(data$sugar, data$calories)
+```
+
+###Build the model
+
+```{r}
+model <- lm(calories ~ sugar, data= data)
+summary(model)
+```
+####Summary####
+
+Our model is: calories = (29.1542) + (3.0453) sugar
+
+###A simple regression model was conducted to predict the calories. All assumptions has been tested, and no further adjustment made. A significant regression equation was found(F(1,13) = 25.13, p < 0.001), with R squared of 0.6591. Both the intercept(p = 0.035315) and predictor(p<0.001) are significant. Based on the model, the result suggest that when one unit of sugar increased, there are 3.0453 unit of calories will be increased. 
+
