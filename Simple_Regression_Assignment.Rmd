@@ -78,5 +78,8 @@ summary(model)
 
 Our model is: calories = (29.1542) + (3.0453) sugar
 
-###A simple regression model was conducted to predict the calories. All assumptions has been tested, and no further adjustment made. A significant regression equation was found(F(1,13) = 25.13, p < 0.001), with R squared of 0.6591. Both the intercept(p = 0.035315) and predictor(p<0.001) are significant. Based on the model, the result suggest that when one unit of sugar increased, there are 3.0453 unit of calories will be increased. 
+###A simple regression model was conducted to predict the calories. All assumptions has been tested, and no further adjustment made. A significant regression equation was found(F(1,13) = 25.13, p < 0.001), with R squared of 0.6591. Both the intercept(p = 0.035315) and predictor(p<0.001) are significant. Based on the model, the result suggest that when one unit of sugar increased, there are 3.0453 unit of calories will be increased.
 
+
+
+1111111111111111111111111111111111111
